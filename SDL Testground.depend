@@ -1,0 +1,85 @@
+# depslib dependency file v1.0
+1382146746 source:/home/turupawn/Projects/CodeBlocks/Progra 3/Ejemplos/SDL Testground/main.cpp
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	"SDL/SDL_ttf.h"
+	<string>
+
+1383715850 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\main.cpp
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	"SDL/SDL_ttf.h"
+	"Personaje.h"
+	"Kaiyo.h"
+	"Gogeta.h"
+	"Saiya.h"
+	"Broley.h"
+	"Roshi.h"
+	<string>
+	<vector>
+
+1383715958 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\enemigo.cpp
+	"Enemigo.h"
+
+1383715958 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\enemigo.h
+	<string>
+	<vector>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	"Personaje.h"
+
+1383715958 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\personaje.cpp
+	"Personaje.h"
+
+1383715958 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\personaje.h
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	<vector>
+	<string>
+
+1383687295 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\fantasmita.cpp
+	"Fantasmita.h"
+
+1383687295 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\fantasmita.h
+	"Enemigo.h"
+
+1383687294 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\bomba.cpp
+	"Bomba.h"
+
+1383687294 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\bomba.h
+	"Enemigo.h"
+
+1383715958 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\broley.cpp
+	"Broley.h"
+
+1383715631 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\broley.h
+	"Enemigo.h"
+
+1383690165 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\gogeta.cpp
+	"Gogeta.h"
+
+1383686326 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\gogeta.h
+	"Enemigo.h"
+
+1383696233 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\kaiyo.cpp
+	"Kaiyo.h"
+
+1383695838 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\kaiyo.h
+	"Enemigo.h"
+
+1383690165 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\saiya.cpp
+	"Saiya.h"
+
+1383686367 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\saiya.h
+	"Enemigo.h"
+
+1383716038 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\roshi.cpp
+	"Roshi.h"
+
+1383697854 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\roshi.h
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	<vector>
+	<string>
+	"Personaje.h"
+
