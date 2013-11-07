@@ -14,11 +14,15 @@ class Personaje
         Personaje(int x, int y);
         int current_frame;
         int current_iteration;
+        int last_frame;
+        int HP;
         int x;
         int y;
         vector <SDL_Surface*>personaje;
         bool in_battle;
         bool moving;
+        bool got_hit;
+        bool hit_anim;
         virtual void logic();
         void dibujar(SDL_Surface*screen);
         virtual ~Personaje();

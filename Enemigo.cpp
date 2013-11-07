@@ -4,6 +4,8 @@ Enemigo::Enemigo()
 {
     this->x=200;
     this->y=200;
+    this->speedx=3;
+    this->speedy=3;
     this->iteracion = 0;
     this->frame = 0;
     this->derecha=true;
@@ -37,13 +39,13 @@ void Enemigo::dibujar(SDL_Surface*screen)
 void Enemigo::logic()
 {
     if(derecha)
-        this->x++;
+        this->x+=speedx;
     else
-        this->x--;
+        this->x-=speedx;
     if(arriba)
-        this->y--;
+        this->y-=speedy;
     else
-        this->y++;
+        this->y+=speedy;
     if(x>560)
         derecha=false;
     if(x<-10)
@@ -58,9 +60,9 @@ bool Enemigo::collision_logic(Personaje* player)
 {
     int x1 = this->x+25;
     int y1 = this->y+30;
-    int x2 = this->x+55;
+    int x2 = this->x+50;
     int y2 = this->y+70;
-    int px1 = player->x+25;
+    int px1 = player->x+30;
     int py1 = player->y+30;
     int px2 = player->x+55;
     int py2 = player->y+70;

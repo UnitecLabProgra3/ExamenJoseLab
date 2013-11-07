@@ -15,9 +15,9 @@ void Kaiyo::logic()
     if(round)
     {
         if(arriba)
-            this->y--;
+            this->y-=speedy;
         else
-            this->y++;
+            this->y+=speedy;
         if(y>380)
         {
             arriba=true;
@@ -32,9 +32,9 @@ void Kaiyo::logic()
     }else
     {
         if(derecha)
-            this->x++;
+            this->x+=speedx;
         else
-            this->x--;
+            this->x-=speedx;
         if(x>530)
         {
             derecha=false;

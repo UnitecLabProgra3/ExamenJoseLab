@@ -10,7 +10,7 @@
 class Enemigo
 {
     public:
-        int x,y, iteracion, frame;
+        int x,y, iteracion, frame, speedx, speedy;
         bool izquierda, derecha, arriba, abajo;
         std::vector<SDL_Surface*> sprites;
         Enemigo();

@@ -186,14 +186,14 @@ int main( int argc, char* args[] )
 
         //Get the keystates
         Uint8 *keystates = SDL_GetKeyState( NULL );
-
+        player->moving=false;
         //If up is pressed
         if( keystates[ SDLK_UP ] )
         {
             player->in_battle = false;
             player->moving = true;
             player->current_frame = 11;
-            player->y--;
+            player->y-=4;
             if(player->y < -30)
                 player->y = -30;
         }
@@ -204,7 +204,7 @@ int main( int argc, char* args[] )
             player->in_battle = false;
             player->moving = true;
             player->current_frame = 12;
-            player->y++;
+            player->y+=4;
             if(player->y>395)
                 player->y=395;
         }
@@ -215,7 +215,7 @@ int main( int argc, char* args[] )
             player->in_battle = false;
             player->moving = true;
             player->current_frame = 12;
-            player->x--;
+            player->x-=4;
             if(player->x<-30)
                 player->x=-30;
         }
@@ -226,7 +226,7 @@ int main( int argc, char* args[] )
             player->in_battle = false;
             player->moving = true;
             player->current_frame = 11;
-            player->x++;
+            player->x+=4;
             if(player->x>570)
                 player->x=570;
         }
@@ -242,6 +242,7 @@ int main( int argc, char* args[] )
             }
 
         }
+        player->logic();
 
         player->dibujar(screen);
         roshi->dibujar(screen);
@@ -249,18 +250,21 @@ int main( int argc, char* args[] )
         for(int i=0;i<enemies.size();i++)
             enemies[i]->dibujar(screen);
 
-        player->logic();
+
 
         for(int i=0;i<enemies.size();i++)
         {
             enemies[i]->logic();
-            game_over = enemies[i]->collision_logic(player);
-            if(game_over)
+            player->got_hit = enemies[i]->collision_logic(player);
+            if(player->got_hit)
             {
                 break;
             }
         }
-
+        if(player->HP == 0)
+        {
+            game_over=true;
+        }
         game_won = roshi->collision_logic(player);
 
         //Update the screen

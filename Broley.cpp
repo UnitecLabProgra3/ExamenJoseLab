@@ -3,6 +3,7 @@
 Broley::Broley()
 {
     this->y=300;
+    moving = true;
     sprites.push_back(IMG_Load("Broley/BR1.png"));
     sprites.push_back(IMG_Load("Broley/BR2.png"));
     sprites.push_back(IMG_Load("Broley/BR3.png"));
@@ -27,13 +28,22 @@ void Broley::dibujar(SDL_Surface*screen)
     iteracion++;
 }
 
+void Broley::logic()
+{
+    if(moving)
+    {
+        x-=speedx;
+        y-=speedy;
+    }
+}
+
 bool Broley::collision_logic(Personaje* player)
 {
     int x1 = this->x+25;
     int y1 = this->y+25;
     int x2 = this->x+60;
     int y2 = this->y+80;
-    int px1 = player->x+25;
+    int px1 = player->x+30;
     int py1 = player->y+30;
     int px2 = player->x+55;
     int py2 = player->y+70;
