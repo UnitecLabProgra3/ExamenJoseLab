@@ -5,6 +5,7 @@ and may not be redistributed without written permission.*/
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 #include "SDL/SDL_ttf.h"
+#include "SDL/SDL_mixer.h"
 #include "Personaje.h"
 #include "Kaiyo.h"
 #include "Gogeta.h"
@@ -21,15 +22,19 @@ const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 const int SCREEN_BPP = 32;
 
+
 //The surfaces
 SDL_Surface *background = NULL;
 SDL_Surface *winground = NULL;
 SDL_Surface *loseground = NULL;
-SDL_Surface *up = NULL;
-SDL_Surface *down = NULL;
-SDL_Surface *left = NULL;
-SDL_Surface *right = NULL;
 SDL_Surface *screen = NULL;
+SDL_Surface *Title_Scrn = NULL;
+
+Mix_Music *BGM = NULL;
+Mix_Chunk *Begin_Game_sound = NULL;
+Mix_Chunk *got_hit_sound = NULL;
+Mix_Chunk *game_won_sound = NULL;
+Mix_Chunk *game_over_sound = NULL;
 
 //The event structure
 SDL_Event event;
@@ -90,14 +95,25 @@ bool init()
 
 bool load_files()
 {
+
     //Load the background image
     background = load_image( "bk.png" );
+    Title_Scrn = load_image("Title_Screen.png");
 
     winground = load_image("won.png");
     loseground = load_image("lose.png");
     //Open the font
     font = TTF_OpenFont( "lazy.ttf", 72 );
 
+    Begin_Game_sound = Mix_LoadWAV("Begin2.wav");
+    got_hit_sound = Mix_LoadWAV("Got_Hit2.wav");
+    game_won_sound = Mix_LoadWAV("Game_Won2.wav");
+    game_over_sound = Mix_LoadWAV("Game_Over2.wav");
+
+    if( ( Begin_Game_sound == NULL ) || ( got_hit_sound == NULL ) || ( game_won_sound == NULL ) || ( game_over_sound == NULL ) )
+    {
+        return false;
+    }
     //If there was a problem in loading the background
     if( background == NULL )
     {
@@ -118,13 +134,22 @@ void clean_up()
 {
     //Free the surfaces
     SDL_FreeSurface( background );
-    SDL_FreeSurface( up );
-    SDL_FreeSurface( down );
-    SDL_FreeSurface( left );
-    SDL_FreeSurface( right );
+    SDL_FreeSurface( screen );
+    SDL_FreeSurface( loseground );
+    SDL_FreeSurface( winground );
+    SDL_FreeSurface( Title_Scrn);
 
     //Close the font
     TTF_CloseFont( font );
+
+    Mix_FreeMusic( BGM );
+
+    Mix_FreeChunk( Begin_Game_sound );
+    Mix_FreeChunk( game_over_sound );
+    Mix_FreeChunk( game_won_sound );
+    Mix_FreeChunk( got_hit_sound );
+
+    Mix_CloseAudio();
 
     //Quit SDL_ttf
     TTF_Quit();
@@ -135,8 +160,65 @@ void clean_up()
 
 int main( int argc, char* args[] )
 {
-    //Quit flag
+    if( Mix_OpenAudio( 22050, MIX_DEFAULT_FORMAT, 2, 4096 ) == -1 )
+    {
+        return 1;
+    }
+
+    BGM = Mix_LoadMUS( "BGM.mp3" );
+
+    if( BGM == NULL )
+    {
+        return 1;
+    }
+    bool first_time = true, first_it = true;
+    Mix_PlayMusic(BGM, -1);
+
+    if(first_time)
+    {
+        goto CYCLE;
+        FIRST:
+        bool quit2 = false;
+        if(quit2 == false)
+        {
+            while(quit2 == false)
+            {
+                while( SDL_PollEvent( &event ) )
+                {
+                    //If the user has Xed out the window
+                    if( event.type == SDL_QUIT )
+                    {
+                        //Quit the program
+                        return 0;
+                    }
+                }
+                Uint8 *keystates2 = SDL_GetKeyState( NULL );
+                apply_surface( 0, 0, Title_Scrn, screen );
+                if( SDL_Flip( screen ) == -1 )
+                {
+                    return 1;
+                }
+                if(keystates2[SDLK_RETURN])
+                {
+                    quit2=true;
+                    SDL_FreeSurface( Title_Scrn);
+                }
+            }
+        }
+        first_time=false;
+        first_it=false;
+    }
+
+    CYCLE:
     bool quit = false;
+    if(!first_it)
+    {
+        first_it=true;
+        goto LAST;
+    }
+    //Quit flag
+
+
 
     //Initialize
     if( init() == false )
@@ -149,24 +231,28 @@ int main( int argc, char* args[] )
     {
         return 1;
     }
-    //Render the text
-    up = TTF_RenderText_Solid( font, "Up", textColor );
-    down = TTF_RenderText_Solid( font, "Down", textColor );
-    left = TTF_RenderText_Solid( font, "Left", textColor );
-    right = TTF_RenderText_Solid( font, "Right", textColor );
-
+    if(first_time)
+    {
+        goto FIRST;
+    }
+    LAST:
     Personaje *player = new Personaje(0,0);
 
     Roshi *roshi = new Roshi(570, 395);
 
     vector<Enemigo*>enemies;
-    enemies.push_back(new Gogeta);
+    enemies.push_back(new Gogeta(player));
     enemies.push_back(new Kaiyo);
-    enemies.push_back(new Saiya);
+    enemies.push_back(new Saiya(320, 150));
+    enemies.push_back(new Saiya(320, 250));
     enemies.push_back(new Broley);
 
     bool game_over = false;
     bool game_won = false;
+    if( Mix_PlayChannel( -1, Begin_Game_sound, 0 ) == -1 )
+    {
+        return 1;
+    }
     //While the user hasn't quit
     while( quit == false )
     {
@@ -181,11 +267,13 @@ int main( int argc, char* args[] )
             }
         }
 
+
         //Apply the background
         apply_surface( 0, 0, background, screen );
 
         //Get the keystates
         Uint8 *keystates = SDL_GetKeyState( NULL );
+
         player->moving=false;
         //If up is pressed
         if( keystates[ SDLK_UP ] )
@@ -255,15 +343,24 @@ int main( int argc, char* args[] )
         for(int i=0;i<enemies.size();i++)
         {
             enemies[i]->logic();
-            player->got_hit = enemies[i]->collision_logic(player);
+            if(!player->hit_anim)
+                player->got_hit = enemies[i]->collision_logic(player);
             if(player->got_hit)
             {
+                if( Mix_PlayChannel( -1, got_hit_sound, 0 ) == -1 )
+                {
+                    return 1;
+                }
                 break;
             }
         }
         if(player->HP == 0)
         {
             game_over=true;
+            if( Mix_PlayChannel( -1, game_over_sound, 0 ) == -1 )
+            {
+                return 1;
+            }
         }
         game_won = roshi->collision_logic(player);
 
@@ -274,6 +371,13 @@ int main( int argc, char* args[] )
         }
         if(game_over || game_won)
         {
+            if(game_won)
+            {
+                if( Mix_PlayChannel( -1, game_won_sound, 0 ) == -1 )
+                {
+                    return 1;
+                }
+            }
             int itt = 0;
             while(!quit)
             {
@@ -299,9 +403,21 @@ int main( int argc, char* args[] )
                     return 1;
                 }
                 itt++;
-                if(itt >= 500)
+                if(itt >= 200)
                 {
-                    quit = true;
+                    SDL_FreeSurface( background );
+                    SDL_FreeSurface( screen );
+                    SDL_FreeSurface( loseground );
+                    SDL_FreeSurface( winground );
+                    Mix_FreeChunk( Begin_Game_sound );
+                    Mix_FreeChunk( game_over_sound );
+                    Mix_FreeChunk( game_won_sound );
+                    Mix_FreeChunk( got_hit_sound );
+                    enemies.clear();
+                    delete player;
+                    delete roshi;
+                    delete keystates;
+                    goto CYCLE;
                 }
             }
         }

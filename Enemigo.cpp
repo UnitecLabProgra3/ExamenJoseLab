@@ -33,7 +33,6 @@ void Enemigo::dibujar(SDL_Surface*screen)
         frame = 1;
     }
     SDL_BlitSurface(this->sprites[frame], NULL, screen, &offset);
-    iteracion++;
 }
 
 void Enemigo::logic()

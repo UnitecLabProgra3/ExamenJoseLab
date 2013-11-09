@@ -44,6 +44,11 @@ void Personaje::logic()
     current_iteration++;
     if(got_hit)
     {
+        if(in_battle)
+        {
+            current_frame=0;
+            in_battle = false;
+        }
         this->x=0;
         this->y=0;
         hit_anim=true;

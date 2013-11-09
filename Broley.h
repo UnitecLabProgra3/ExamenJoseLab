@@ -8,6 +8,7 @@ class Broley : public Enemigo
     public:
         Broley();
         bool moving;
+        int boolframe;
         virtual ~Broley();
         bool collision_logic(Personaje* player);
         void logic();

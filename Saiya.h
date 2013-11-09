@@ -6,7 +6,7 @@
 class Saiya : public Enemigo
 {
     public:
-        Saiya();
+        Saiya(int x, int y);
         virtual ~Saiya();
     protected:
     private:

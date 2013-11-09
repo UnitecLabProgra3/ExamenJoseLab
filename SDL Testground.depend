@@ -5,10 +5,11 @@
 	"SDL/SDL_ttf.h"
 	<string>
 
-1383760199 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\main.cpp
+1383955039 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\main.cpp
 	"SDL/SDL.h"
 	"SDL/SDL_image.h"
 	"SDL/SDL_ttf.h"
+	"SDL/SDL_mixer.h"
 	"Personaje.h"
 	"Kaiyo.h"
 	"Gogeta.h"
@@ -18,7 +19,7 @@
 	<string>
 	<vector>
 
-1383785668 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\enemigo.cpp
+1383790886 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\enemigo.cpp
 	"Enemigo.h"
 
 1383758360 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\enemigo.h
@@ -28,7 +29,7 @@
 	"SDL/SDL_image.h"
 	"Personaje.h"
 
-1383760148 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\personaje.cpp
+1383955594 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\personaje.cpp
 	"Personaje.h"
 
 1383759852 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\personaje.h
@@ -49,17 +50,18 @@
 1383687294 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\bomba.h
 	"Enemigo.h"
 
-1383759058 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\broley.cpp
+1383791657 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\broley.cpp
 	"Broley.h"
 
-1383758906 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\broley.h
+1383791282 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\broley.h
 	"Enemigo.h"
 
-1383690165 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\gogeta.cpp
+1383952206 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\gogeta.cpp
 	"Gogeta.h"
 
-1383686326 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\gogeta.h
+1383809646 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\gogeta.h
 	"Enemigo.h"
+	<cmath>
 
 1383758420 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\kaiyo.cpp
 	"Kaiyo.h"
@@ -67,10 +69,10 @@
 1383695838 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\kaiyo.h
 	"Enemigo.h"
 
-1383690165 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\saiya.cpp
+1383792110 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\saiya.cpp
 	"Saiya.h"
 
-1383686367 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\saiya.h
+1383792110 c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\saiya.h
 	"Enemigo.h"
 
 1383716038 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\labsemana2animacion-master\roshi.cpp
